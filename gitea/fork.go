@@ -21,10 +21,15 @@ func (c *Client) ListForks(user, repo string) ([]*Repository, error) {
 
 // CreateForkOption options for creating a fork
 type CreateForkOption struct {
+
 	// organization name, if forking into an organization
 	Organization *string `json:"organization"`
-	Name         string  `json:"name"`
-	Owner        string  `json:"owner"`
+
+	// user name, if forking into another user
+	Owner string `json:"owner"`
+
+	// custom name to the new repo (the default is the same name as the source repo)
+	Name string `json:"name"`
 }
 
 // CreateFork create a fork of a repository
