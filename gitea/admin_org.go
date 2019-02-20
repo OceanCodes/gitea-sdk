@@ -10,6 +10,12 @@ import (
 	"fmt"
 )
 
+// AdminListAllOrgs lists all organizations
+func (c *Client) AdminListAllOrgs() ([]*Organization, error) {
+	orgs := make([]*Organization, 0, 10)
+	return orgs, c.getParsedResponse("GET", "/admin/orgs", nil, nil, &orgs)
+}
+
 // AdminCreateOrg create an organization
 func (c *Client) AdminCreateOrg(user string, opt CreateOrgOption) (*Organization, error) {
 	body, err := json.Marshal(&opt)
