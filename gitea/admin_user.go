@@ -10,6 +10,18 @@ import (
 	"fmt"
 )
 
+// AdminListAllOrgs lists all organizations
+func (c *Client) AdminListAllOrgs() ([]*Organization, error) {
+	orgs := make([]*Organization, 0, 10)
+	return orgs, c.getParsedResponse("GET", "/admin/orgs", nil, nil, &orgs)
+}
+
+// AdminListAllUsers lists all users
+func (c *Client) AdminListAllUsers() ([]*User, error) {
+	users := make([]*User, 0, 10)
+	return users, c.getParsedResponse("GET", "/admin/users", nil, nil, &users)
+}
+
 // CreateUserOption create user options
 type CreateUserOption struct {
 	SourceID  int64  `json:"source_id"`
